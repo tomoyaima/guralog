@@ -1,0 +1,108 @@
+<head>
+  <title>文書のタイトル</title>
+
+  <style type="text/css">
+    a.link:link {
+      color: white;
+    }
+    a.link:visited {
+      color: white;
+    }
+    a.link:hover {
+      color: #ff0000;
+    }
+    a.link:active {
+      color: white;
+    }
+  </style>
+
+</head>
+
+<div class="body">
+  <div class="flex_test-box">
+    <div class="flex_test-item">
+
+      院ログ
+      <div class="guraduate_collage_log">
+        ~guraduate collage log~
+      </div>
+    </div>
+
+    <div class="flex_test-item">
+
+      <%= current_user.username %>さん
+
+      <a class="link" href="/logs/mypage">マイページ</a>
+      <br>
+
+    </div>
+
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+        <h1 class="text-center font-weight-bold pt-5">Edit<%= resource_name.to_s.humanize %></h1>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= devise_error_messages! %>
+
+        <div class="editfield pt-3">
+          <%= f.label :username %><br/>
+          <%= f.text_field :username, autofocus: true, class: "col-md-12 form-control" %>
+        </div>
+
+        <div class="editfield pt-3">
+          <%= f.label:score,"TOEICスコア" %><br />
+          <%= f.number_field  :score, autofocus: true , class: "col-md-12 form-control"%>
+        </div>
+
+        <div class="editfield pt-3">
+          <%= f.label :email %><br/>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-md-12 form-control" %>
+        </div>
+
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div class="loginfield pt-3">Currently waiting confirmation for:
+            <%= resource.unconfirmed_email %></div>
+        <% end %>
+
+        <div class="editfield pt-3">
+          <%= f.label :password %>
+          <i>(leave blank if you don't want to change it)</i><br/>
+          <%= f.password_field :password, autocomplete: "new-password", class: "col-md-12 form-control" %>
+          <% if @minimum_password_length %>
+            <br/>
+            <em><%= @minimum_password_length %>
+              characters minimum</em>
+          <% end %>
+        </div>
+
+        <div class="editfield pt-3">
+          <%= f.label :password_confirmation %><br/>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "col-md-12 form-control" %>
+        </div>
+
+        <div class="editfield pt-3">
+          <%= f.label :current_password %>
+          <i>(we need your current password to confirm your changes)</i><br/>
+          <%= f.password_field :current_password, autocomplete: "current-password" , class: "col-md-12 form-control"%>
+        </div>
+
+        <div class="actions pt-3">
+          <%= f.submit "Update", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+
+      <h3>Cancel my account</h3>
+
+      <p>Unhappy?
+        <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+      <%= link_to "Back", :back %>
+      <div class="col-md-1">
+
+      </div>
+    </div>
+  </div>
+</div>

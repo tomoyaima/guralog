@@ -1,0 +1,150 @@
+
+<%= link_to "一覧に戻る", logs_index_path %>
+<%= form_for(@log, :url => { controller:'logs', action:'create'})do |f| %>
+<h1>投稿ページ</h1>
+<div class="field">
+  <%= f.label :タイトル %>
+  <br>
+  <%= f.text_field :title,size: 60 %>
+ </div>
+
+ <div id="hier_select">
+
+  <form action="#">
+
+
+    ■大学院名を選択：
+    <br>
+    <select name="smple1-1" id="lv1" class="group1">
+       <option value="0" selected="selected">▼大学院名を選択</option>
+       <option value="chiba">千葉大学大学院</option>
+       <option value="tokyo">東京大学大学院</option>
+       <option value="other">その他</option>
+    </select>
+  <br>
+    ■研究科を選択：
+    <br>
+    <select name="smple1-2" id="lv2" class="group1" disabled="disabled">
+      <option value="0">▼研究科を選択</option>
+       <option value="chibayuu" class="pchiba">融合理工学府</option>
+       <option value="chibakan" class="pchiba">看護学研究科</option>
+       <option value="chibajin" class="pchiba">人文公共学府</option>
+       <option value="chibaiyaku" class="pchiba">医学薬学府</option>
+       <option value="chibagaku" class="pchiba">東京学芸大学大学院連合学校教育学研究科</option>
+       <option value="chibasen" class="pchiba">専門法務研究科</option>
+       <option value="chibaen" class="pchiba">園芸学研究科</option>
+       <option value="chibaosaka" class="pchiba">大阪大学大学院連合小児発達学研究科</option>
+       <option value="chibakyou" class="pchiba">教育学研究科</option>
+
+       <option value="tokyojin" class="ptokyo">人文社会系研究科</option>
+       <option value="tokyokyou" class="ptokyo">教育学研究科</option>
+       <option value="tokyohou" class="ptokyo">法学政治学研究科 </option>
+       <option value="tokyokai" class="ptokyo">経済学研究科</option>
+       <option value="tokyosou" class="ptokyo">総合文化研究科</option>
+       <option value="tokyorigaku"class="ptokyo">理学系研究科</option>
+       <option value="tokyokou" class="ptokyo">工学系研究科</option>
+       <option value="tokyonou" class="ptokyo">農学生命科学研究科</option>
+       <option value="tokyoigaku" class="ptokyo">医学系研究科</option>
+       <option value="tokyoyaku"class="ptokyo">薬学系研究科</option>
+       <option value="tokyosuuri"class="ptokyo">数理科学研究科</option>
+       <option value="tokyosinn"class="ptokyo">新領域創成科学研究科</option>
+       <option value="tokyojou"class="ptokyo">情報理工学系研究科</option>
+       <option value="tokyojokan"class="ptokyo">情報学環・学際情報学府</option>
+       <option value="tokyokoukyou"class="ptokyo">公共政策学教育部</option>
+
+    </select>
+     <br>
+    ■専攻名を選択：
+      <br>
+       <select name="smple1-3" id="lv3" class="group1" disabled="disabled">
+       <option value="0">▼専攻名を選択</option>
+       <option value="cyuusujou" class="chibayuu">数学情報科学専攻</option>
+       <option value="cyuutikyu" class="chibayuu">地球環境科学専攻</option>
+       <option value="cyuusenri" class="chibayuu">先進理化学専攻</option>
+       <option value="cyuusosei" class="chibayuu">創成工学専攻</option>
+       <option value="cyuukikan" class="chibayuu">基幹工学専攻</option>
+    </select>
+    <br>
+
+  <br><input type="reset" value="clear">
+      </form>
+<br>
+
+<script>
+  ;(function($){
+    $.fn.tgHierSelectV2 = function(options){
+
+        var opts = $.extend({}, $.fn.tgHierSelectV2.defaults, options);
+        var cnt;
+        var arr = [];
+
+        $('html').find('select.'+opts.group).each( function(){
+
+            // nameのレベル番号取得
+            var lvTxt = parseInt($(this).attr('id').replace(/lv/, ""));
+
+            // プルダウンのoption内容をコピー
+            arr[lvTxt] = $('#lv'+lvTxt+' option').clone();
+
+            // プルダウン選択時処理
+            $('#'+this.id).change( function(){
+
+                // プルダウン選択値
+                var pdVal = $(this).val();
+
+                // レベル文字を取得し数値化
+                var currentLvNum = parseInt($(this).attr('id').replace(/lv/, ""));
+                var nextLevelNum = currentLvNum+1;
+
+                // プルダウン操作
+                $('#lv'+nextLevelNum).removeAttr("disabled");                   // 子プルダウンの"disabled"解除
+                $('#lv'+nextLevelNum+" option").remove();                       // 一旦、子プルダウンのoptionを削除
+                $(arr[currentLvNum+1]).appendTo('#lv'+nextLevelNum);            // (コピーしていた)元の子プルダウンを表示
+                $('#lv'+nextLevelNum+" option[class != p"+pdVal+"]").remove();  // 選択値以外のクラスのoptionを削除
+
+                // デフォルトのoptionを先頭に表示
+                for(cnt=nextLevelNum; cnt<=opts.maxLevel; cnt++){
+                    $('#lv'+cnt).prepend('<option value="0" selected="selected">'+opts.defaultSelect+'</option>');
+                }
+                // 変更したプルダウン以下の子プルダウンを全てdisabledに
+                if((nextLevelNum+1) <= opts.maxLevel){
+                    for(i=nextLevelNum+1; i<=opts.maxLevel; i++){
+                        $('#lv'+i).attr("disabled", "disabled");
+                    }
+                }
+            });
+        });
+    }
+})(jQuery);
+</script>
+
+
+ <div class="field">
+   <%= f.label :使用教材%>
+   <br>
+   <%= f.text_area :kyouzai,size: 80 %>
+ </div>
+
+ <div class="field">
+   <%= f.label :TOEICスコア %>
+   <br>
+   <%= f.text_field :score,size: 60 %>
+  </div>
+
+   <div class="field">
+     <%= f.label :就職情報 %>
+     <br>
+     <%= f.text_field :syusyoku,size: 60 %>
+    </div>
+
+    <div class="field">
+      <%= f.label :アドバイス %>
+      <br>
+      <%= f.text_area :body,size: 60 %>
+     </div>
+
+ <div class="action">
+   <%= f.submit %>
+ </div>
+
+<% end %>

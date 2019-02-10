@@ -1,0 +1,323 @@
+<head>
+  <title>文書のタイトル</title>
+
+  <style type="text/css">
+    a.link:link {
+      color: white;
+    }
+    a.link:visited {
+      color: white;
+    }
+    a.link:hover {
+      color: #ff0000;
+    }
+    a.link:active {
+      color: white;
+    }
+  </style>
+
+</head>
+<div class = "body">
+  <div class="header1">
+
+  <div class="flex_test-box">
+    <div class="flex_test-item">
+
+      大学院ログ
+      </div>
+      <div class="flex_test-item">
+        ~graduate collage log~
+      </div>
+
+
+    <div class="flex_test-item">
+      <div class="session">
+      <%= current_user.username %>さん
+
+
+      <a class="link" href="/logs/index">投稿一覧へ戻る</a>
+</div>
+    </div>
+  </div>
+  </div>
+
+<%= form_for(@log, :url => { controller:'logs', action:'create'})do |f| %>
+
+<h1 class = "toukoupage">投稿ページ</h1>
+
+<div class = "toukou">
+  <div class="field">
+    <%= f.label :■タイトル %>
+    <br>
+    <%= f.text_field :title,size: 40,class: "col-md-12 form-control"%>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- (※1)▼1段階目(メイン)のプルダウンメニュー -->
+
+  <div class="select">
+
+    ■都道府県名を選択：
+    <br>
+    <select name="area" id="area0">
+      <option data-subgroup="" value="">都道府県名を選択</option>
+      <%= @prefectures.each do |p| %>
+        <option data-subgroup=<%=p.subgroup%> value=<%=p.name%>><%=p.name%></option>
+      <% end %>
+    </select>
+    <br>
+    ■大学院名を選択：
+    <br>
+    <select name="log[school]" id="area1">
+      <option data-group="" value="">大学院名を選択</option>
+      <option data-group="chiba" data-subgroup="chiba" value="千葉大学大学院">千葉大学大学院</option>
+      <option data-group="tokyoto"data-subgroup="tokyo"  value="東京大学大学院">東京大学大学院</option>
+      <option data-group="ibaraki" data-subgroup="tukuba" value="筑波大学大学院">筑波大学大学院</option>
+
+    </select>
+
+    <br>
+    ■研究科を選択：
+    <br>
+
+    <select name="log[department]" id="area2">
+      <option data-group="" value="">研究科を選択</option>
+      <option data-group="chiba" data-subgroup="cyuu" value="融合理工学府">融合理工学府</option>
+      <option data-group="chiba" data-subgroup="ckyou" value="教育学研究科">教育学研究科</option>
+      <option data-group="chiba" data-subgroup="ckango" value="看護学研究科">看護学研究科</option>
+      <option data-group="chiba" data-subgroup="cjinbun" value="人文公共学府">人文公共学府</option>
+      <option data-group="chiba" data-subgroup="cigaku" value="医学薬学府">医学薬学府</option>
+      <option data-group="chiba" data-subgroup="cgaku" value="東京学芸大学大学院連合学校教育学研究科">東京学芸大学大学院連合学校教育学研究科</option>
+      <option data-group="chiba" data-subgroup="csenhou" value="専門法務研究科">専門法務研究科</option>
+      <option data-group="chiba" data-subgroup="cen" value="園芸学研究科">園芸学研究科</option>
+      <option data-group="chiba" data-subgroup="cosaka" value="大阪大学大学院連合小児発達学研究科">大阪大学大学院連合小児発達学研究科</option>
+
+      <option data-group="tokyo" data-subgroup="tokyojin" value="人文社会系研究科">人文社会系研究科</option>
+      <option data-group="tokyo" data-subgroup="tokyokyou" value="教育学研究科">教育学研究科</option>
+      <option data-group="tokyo" data-subgroup="tokyohou" value="法学政治学研究科">法学政治学研究科
+      </option>
+      <option data-group="tokyo" data-subgroup="tokyokei" value="経済学研究科">経済学研究科</option>
+      <option data-group="tokyo" data-subgroup="tokyosou" value="総合文化研究科">総合文化研究科</option>
+      <option data-group="tokyo" data-subgroup="tokyorigaku" value="理学系研究科">理学系研究科</option>
+      <option data-group="tokyo" data-subgroup="tokyokou" value="工学系研究科">工学系研究科</option>
+      <option data-group="tokyo" data-subgroup="tokyonou" value="農学生命科学研究科">農学生命科学研究科</option>
+      <option data-group="tokyo" data-subgroup="tokyoigaku" value="医学系研究科">医学系研究科</option>
+      <option data-group="tokyo" data-subgroup="tokyoyaku" value="薬学系研究科">薬学系研究科</option>
+      <option data-group="tokyo" data-subgroup="tokyosuri" value="数理科学研究科">数理科学研究科</option>
+      <option data-group="tokyo" data-subgroup="tokyosinryou" value="新領域創成科学研究科">新領域創成科学研究科</option>
+      <option data-group="tokyo" data-subgroup="tokyojou" value="情報理工学系研究科">情報理工学系研究科</option>
+      <option data-group="tokyo" data-subgroup="tokyojokan" value="情報学環・学際情報学府">情報学環・学際情報学府</option>
+      <option data-group="tokyo" data-subgroup="tokyokoukyou" alue="公共政策学教育部">公共政策学教育部</option>
+
+      <option data-group="tokyo" data-subgroup="tokyokoukyou" alue="公共政策学教育部">公共政策学教育部</option>
+
+    </select>
+    <br>
+
+    ■専攻名を選択：
+    <br>
+
+    <select name="log[major]" id="area3">
+      <option data-group="" value="">専攻を選択</option>
+      <option data-group="cyuu" value="数学情報科学専攻・情報数理学コース">数学情報科学専攻・情報数理学コース</option>
+      <option data-group="cyuu" value="数学情報科学専攻・情報科学コース">数学情報科学専攻・情報科学コース</option>
+      <option data-group="cyuu" value="地球環境科学専攻・地球科学コース">地球環境科学専攻・地球科学コース</option>
+      <option data-group="cyuu" value="地球環境科学専攻・リモートセンシングコース">地球環境科学専攻・リモートセンシングコース</option>
+      <option data-group="cyuu" value="地球環境科学専攻・都市環境システムコース">地球環境科学専攻・都市環境システムコース</option>
+      <option data-group="cyuu" value="先進理化学専攻・物理学コース">先進理化学専攻・物理学コース</option>
+      <option data-group="cyuu" value="先進理化学専攻・物質科学コース">先進理化学専攻・物質科学コース</option>
+      <option data-group="cyuu" value="先進理化学専攻・化学コース">先進理化学専攻・化学コース</option>
+      <option data-group="cyuu" value="先進理化学専・共生応用化学コース">先進理化学専・共生応用化学コース</option>
+      <option data-group="cyuu" value="先進理化学専攻・生物学コース">先進理化学専攻・生物学コース</option>
+      <option data-group="cyuu" value="創成工学専攻・建築学コース">創成工学専攻・建築学コース</option>
+      <option data-group="cyuu" value="創成工学専攻・イメージング科学コース">創成工学専攻・イメージング科学コース</option>
+      <option data-group="cyuu" value="創成工学専攻・デザインコース">創成工学専攻・デザインコース</option>
+      <option data-group="cyuu" value="基幹工学専攻・機械工学コース">基幹工学専攻・機械工学コース</option>
+      <option data-group="cyuu" value="基幹工学専攻・医工学コース">基幹工学専攻・医工学コース</option>
+      <option data-group="cyuu" value="基幹工学専攻・電気電子工学コース">基幹工学専攻・電気電子工学コース</option>
+      <option data-group="ckyou" value="学校教育学専攻">学校教育学専攻</option>
+      <option data-group="ckyou" value="高度教職実践専攻">高度教職実践専攻</option>
+      <option data-group="cgaku" value="学校教育学専攻">学校教育学専攻</option>
+      <option data-group="ckango" value="看護システム管理学専攻">看護システム管理学専攻</option>
+      <option data-group="ckango" value="看護学専攻">看護学専攻</option>
+      <option data-group="ckango" value="共同災害看護学専攻">共同災害看護学専攻</option>
+      <option data-group="cen" value="環境園芸学専攻">環境園芸学専攻</option>
+      <option data-group="cjinbun" value="人文科学専攻">人文科学専攻</option>
+      <option data-group="cjinbun" value="公共社会科学専攻">公共社会科学専攻</option>
+      <option data-group="cjinbun" value="人文公共学専攻">人文公共学専攻</option>
+      <option data-group="cigaku" value="医科学専攻">医科学専攻</option>
+      <option data-group="cigaku" value="総合薬品科学専攻">総合薬品科学専攻</option>
+      <option data-group="cigaku" value="先端創薬科学専攻">先端創薬科学専攻</option>
+      <option data-group="cigaku" value="先端医学薬学専攻">先端医学薬学専攻</option>
+      <option data-group="cigaku" value="先進予防医学共同専攻">先進予防医学共同専攻</option>
+      <option data-group="cosaka" value="小児発達学専攻">小児発達学専攻</option>
+      <option data-group="csenhou" value="法務専攻">法務専攻</option>
+
+      <option data-group="tokyojin" value="基礎文化研究専攻">基礎文化研究専攻</option>
+      <option data-group="tokyojin" value="日本文化研究専攻">日本文化研究専攻</option>
+      <option data-group="tokyojin" value="アジア文化研究専攻">アジア文化研究専攻</option>
+      <option data-group="tokyojin" value="欧米系文化研究専攻">欧米系文化研究専攻</option>
+      <option data-group="tokyojin" value="社会文化研究専攻">社会文化研究専攻</option>
+      <option data-group="tokyojin" value="文化資源学研究専攻">文化資源学研究専攻</option>
+      <option data-group="tokyojin" value="韓国朝鮮文化研究専攻">韓国朝鮮文化研究専攻</option>
+      <option data-group="tokyokyou" value="総合教育科学専攻">総合教育科学専攻</option>
+      <option data-group="tokyokyou" value="学校教育高度化専攻">学校教育高度化専攻</option>
+      <option data-group="tokyohou" value="総合法政専攻">総合法政専攻</option>
+      <option data-group="tokyohou" value="法曹養成専攻">法曹養成専攻</option>
+      <option data-group="tokyokei" value="経済専攻">経済専攻</option>
+      <option data-group="tokyokei" value="マネジメント専攻">マネジメント専攻</option>
+      <option data-group="tokyosou" value="言語情報科学専攻">言語情報科学専攻</option>
+      <option data-group="tokyosou" value="超域文化科学専攻">超域文化科学専攻</option>
+      <option data-group="tokyosou" value="広域科学専攻">広域科学専攻</option>
+      <option data-group="tokyosou" value="地域文化研究専攻">地域文化研究専攻</option>
+      <option data-group="tokyosou" value="国際社会科学専攻">国際社会科学専攻</option>
+      <option data-group="tokyorigaku" value="物理学専攻">物理学専攻</option>
+      <option data-group="tokyorigaku" value="天文学専攻">天文学専攻</option>
+      <option data-group="tokyorigaku" value="地球惑星科学専攻">地球惑星科学専攻</option>
+      <option data-group="tokyorigaku" value="化学専攻">化学専攻</option>
+      <option data-group="tokyorigaku" value="生物科学専攻">生物科学専攻</option>
+      <option data-group="tokyokou" value="社会基盤学専攻">社会基盤学専攻</option>
+      <option data-group="tokyokou" value="建築学専攻">建築学専攻</option>
+      <option data-group="tokyokou" value="都市工学専攻">都市工学専攻</option>
+      <option data-group="tokyokou" value="機械工学専攻">機械工学専攻</option>
+      <option data-group="tokyokou" value="精密工学専攻">精密工学専攻</option>
+      <option data-group="tokyokou" value="航空宇宙工学専攻">航空宇宙工学専攻</option>
+      <option data-group="tokyokou" value="電気系工学専攻">電気系工学専攻</option>
+      <option data-group="tokyokou" value="物理工学専攻">物理工学専攻</option>
+      <option data-group="tokyokou" value="システム創成学専攻">システム創成学専攻</option>
+      <option data-group="tokyokou" value="マテリアル工学専攻">マテリアル工学専攻</option>
+      <option data-group="tokyokou" value="応用化学専攻">応用化学専攻</option>
+      <option data-group="tokyokou" value="化学システム工学専攻">化学システム工学専攻</option>
+      <option data-group="tokyokou" value="化学生命工学専攻">化学生命工学専攻</option>
+      <option data-group="tokyokou" value="先端学際工学専攻">先端学際工学専攻</option>
+      <option data-group="tokyokou" value="原子力国際専攻">原子力国際専攻</option>
+      <option data-group="tokyokou" value="技術経営戦略学専攻">技術経営戦略学専攻</option>
+      <option data-group="tokyokou" value="原子力専攻">原子力専攻</option>
+      <option data-group="tokyonou" value="生産・環境生物学専攻">生産・環境生物学専攻</option>
+      <option data-group="tokyonou" value="応用生命化学専攻">応用生命化学専攻</option>
+      <option data-group="tokyonou" value="応用生命工学専攻">応用生命工学専攻</option>
+      <option data-group="tokyonou" value="森林科学専攻">森林科学専攻</option>
+      <option data-group="tokyonou" value="農業・資源経済学専攻">農業・資源経済学専攻</option>
+      <option data-group="tokyonou" value="生物・環境工学専攻">生物・環境工学専攻</option>
+      <option data-group="tokyonou" value="生物材料科学専攻">生物材料科学専攻</option>
+      <option data-group="tokyonou" value="農学国際専攻">農学国際専攻</option>
+      <option data-group="tokyonou" value="生圏システム学専攻">生圏システム学専攻</option>
+      <option data-group="tokyonou" value="応用動物科学専攻">応用動物科学専攻</option>
+      <option data-group="tokyonou" value="獣医学専攻">獣医学専攻</option>
+      <option data-group="tokyoigaku" value="健康科学・看護学専攻">健康科学・看護学専攻</option>
+      <option data-group="tokyoigaku" value="国際保健学専攻">国際保健学専攻</option>
+      <option data-group="tokyoigaku" value="医科学専攻">医科学専攻</option>
+      <option data-group="tokyoigaku" value="分子細胞生物学専攻">分子細胞生物学専攻</option>
+      <option data-group="tokyoigaku" value="機能生物学専攻">機能生物学専攻</option>
+      <option data-group="tokyoigaku" value="病因・病理学専攻">病因・病理学専攻</option>
+      <option data-group="tokyoigaku" value="生体物理医学専攻">生体物理医学専攻</option>
+      <option data-group="tokyoigaku" value="脳神経医学専攻">脳神経医学専攻</option>
+      <option data-group="tokyoigaku" value="社会医学専攻">社会医学専攻</option>
+      <option data-group="tokyoigaku" value="内科学専攻">内科学専攻</option>
+      <option data-group="tokyoigaku" value="生殖・発達・加齢医学専攻">生殖・発達・加齢医学専攻</option>
+      <option data-group="tokyoigaku" value="外科学専攻">外科学専攻</option>
+      <option data-group="tokyoyaku" value="薬科学専攻">薬科学専攻</option>
+      <option data-group="tokyoyaku" value="薬学専攻">薬学専攻</option>
+      <option data-group="tokyosuri" value="数理科学専攻">数理科学専攻</option>
+      <option data-group="tokyosinryou" value="物質系専攻">物質系専攻</option>
+      <option data-group="tokyosinryou" value="先端エネルギー工学専攻">先端エネルギー工学専攻</option>
+      <option data-group="tokyosinryou" value="複雑理工学専攻">複雑理工学専攻</option>
+      <option data-group="tokyosinryou" value="先端生命科学専攻">先端生命科学専攻</option>
+      <option data-group="tokyosinryou" value="メディカル情報生命専攻">メディカル情報生命専攻</option>
+      <option data-group="tokyosinryou" value="自然環境学専攻">自然環境学専攻</option>
+      <option data-group="tokyosinryou" value="海洋技術環境学専攻">海洋技術環境学専攻</option>
+      <option data-group="tokyosinryou" value="環境システム学専攻">環境システム学専攻</option>
+      <option data-group="tokyosinryou" value="人間環境学専攻">人間環境学専攻</option>
+      <option data-group="tokyosinryou" value="社会文化環境学専攻">社会文化環境学専攻</option>
+      <option data-group="tokyosinryou" value="国際協力学専攻">国際協力学専攻</option>
+      <option data-group="tokyosinryou" value="サステイナビリティ学グローバルリーダー養成大学院プログラム">サステイナビリティ学グローバルリーダー養成大学院プログラム</option>
+      <option data-group="tokyosinryou" value="情報生命科学専攻">情報生命科学専攻</option>
+      <option data-group="tokyojou" value="コンピュータ科学専攻">コンピュータ科学専攻</option>
+      <option data-group="tokyojou" value="数理情報学専攻">数理情報学専攻</option>
+      <option data-group="tokyojou" value="コンピュータ科学専攻">コンピュータ科学専攻</option>
+      <option data-group="tokyojou" value="システム情報学専攻">システム情報学専攻</option>
+      <option data-group="tokyojou" value="電子情報学専攻">電子情報学専攻</option>
+      <option data-group="tokyojou" value="知能機械情報学専攻">知能機械情報学専攻</option>
+      <option data-group="tokyojou" value="創造情報学専攻">創造情報学専攻</option>
+      <option data-group="tokyojokan" value="学際情報学専攻">学際情報学専攻</option>
+      <option data-group="tokyokoukyou" value="公共政策学専攻">公共政策学専攻</option>
+      <option data-group="tokyokoukyou" value="国際公共政策学専攻">国際公共政策学専攻</option>
+
+
+       </select>
+
+  </div>
+
+  <div class="field">
+    <%= f.label :■合否 %>
+    <br>
+    <%= f.select :job,[["合格","合格"],["不合格","不合格"]] %>
+
+  </div>
+
+  <div class="field">
+    <%= f.label :■使用教材%>
+    <br>
+    <%= f.text_area :book,size: 80,class: "col-md-12 form-control" %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :■アドバイス %>
+    <br>
+    <%= f.text_area :body,size: 40,class: "col-md-12 form-control" %>
+  </div>
+
+  <div class="action text-center">
+    <%= f.submit "Create Log", class: "btn btn-primary" %>
+  </div>
+
+</div>
+<% end %>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="“text/javascript”" src="“../javascripts/js/new.js”"></script>
+<script>
+//地域セレクトボックスイベント設定
+setHierarchySelectEvent('#area0', '#area1');
+setHierarchySelectEvent('#area1', '#area2');
+setHierarchySelectEvent('#area2', '#area3');
+//セレクトボックスの初期値
+$('#area0').val('0').change();
+$('#area1').val('1').change();
+$('#area2').val('2').change();
+$('#area3').val('2').change();
+
+/**
+ * 階層のあるプルダウンのイベントを設定します.
+ * 親のselectタグには属性data-subgroupが設定されている必要があります。
+ * 子のselectタグには属性data-groupが設定されている必要があります。
+ * @param parentSelect 親となるselectタグのセレクタ
+ * @param childSelect 子となるselectタグのセレクタ
+ */
+function setHierarchySelectEvent(parentSelect, childSelect) {
+  var initCategorySmallHtml = $(childSelect).html();
+  $(parentSelect).change(function () {
+    if (1 < $(this).find('option:selected').length) {
+      $(childSelect).find("option").each(function (index, element) {
+        $(element).remove();
+      });
+    } else {
+      var subgroup = $(this).find('option:selected').attr('data-subgroup');
+      $(childSelect).html(initCategorySmallHtml);
+      $(childSelect).find("option").each(function (index, element) {
+        var group = $(element).attr('data-group');
+        if (group) {
+          if (subgroup == group) {
+            //$(element).css('display', 'block');//IEではoptionタグに対してdisplayは効かないため
+          } else {
+            //$(element).css('display', 'none');//IEではoptionタグに対してdisplayは効かないため
+            $(element).remove();
+          }
+        }
+      });
+    }
+    $(childSelect).val('').change(); //未選択時の値は''じゃない場合は書き換えてね
+  });
+}
+</script>

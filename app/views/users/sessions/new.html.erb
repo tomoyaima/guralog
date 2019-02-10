@@ -1,0 +1,80 @@
+<head>
+  <title>文書のタイトル</title>
+
+  <style type="text/css">
+    a.link:link {
+      color: white;
+    }
+    a.link:visited {
+      color: white;
+    }
+    a.link:hover {
+      color: #ff0000;
+    }
+    a.link:active {
+      color: white;
+    }
+  </style>
+
+</head>
+
+
+  <div class="flex_test-box">
+    <div class="flex_test-item">
+
+      大学院ログ
+      </div>
+      <div class="flex_test-item">
+        ~Graduate Collage Log~
+      </div>
+
+
+    <div class="flex_test-item">
+
+
+       <div class="session">
+      <a class="link" href="/logs/index">一覧へ戻る</a>
+      <br></div>
+
+    </div>
+
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-1">
+
+    </div>
+    <div class="col-md-10">
+      <h1 class="text-center font-weight-bold pt-5">Log in</h1>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="loginfield pt-3">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-md-12 form-control" %>
+        </div>
+
+        <div class="loginfield pt-3">
+          <%= f.label :password %><br />
+          <%= f.password_field :password, autocomplete: "off", class: "col-md-12" %>
+        </div>
+
+        <% if devise_mapping.rememberable? -%>
+          <div class="loginfield pt-3">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+        <% end -%>
+
+        <div class="actions pt-3">
+          <%= f.submit "Log in", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+      <div class="pt-3">
+      </div>
+      <%= render "devise/shared/links" %>
+    </div>
+    <div class="col-md-1">
+
+    </div>
+  </div>
+</div>

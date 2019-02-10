@@ -1,0 +1,273 @@
+<head>
+  <title>文書のタイトル</title>
+  <% if user_signed_in? %>
+    <style type="text/css">
+      a.link:link {
+        color: white;
+      }
+      a.link:visited {
+        color: white;
+      }
+      a.link:hover {
+        color: #ff0000;
+      }
+      a.link:active {
+        color: white;
+      }
+    </style>
+  <%else%>
+    <style type="text/css">
+      a.link:link {
+        color: white;
+      }
+      a.link:visited {
+        color: white;
+      }
+      a.link:hover {
+        color: #ff0000;
+      }
+      a.link:active {
+        color: orange;
+      }
+    </style>
+  <% end %>
+</head>
+
+
+
+
+<div class="body">
+<% if user_signed_in? %>
+      <div class="header1">
+
+      <div class="flex_test-box">
+        <div class="flex_test-item">
+
+          大学院ログ
+          </div>
+          <div class="flex_test-item">
+            ~graduate collage log~
+          </div>
+
+
+        <div class="flex_test-item">
+          <%= current_user.username %>さん
+          <a class="link" href="/logs/mypage">マイページ</a>
+          <br>
+          <a class="link" href="/logs/new">新規投稿</a>
+          <a class="link" rel="nofollow" data-method="delete" href="/users/sign_out">ログアウト</a>
+        </div>
+      </div>
+    </div>
+
+  <%else%>
+  <div class="header1">
+
+    <div class="flex_test-box">
+      <div class="flex_test-item">
+
+        大学院ログ
+        </div>
+        <div class="flex_test-item">
+          ~graduate collage log~
+        </div>
+        <div class="flex_test-item">
+        <div class="session">
+        <a class="link" href="/users/sign_in">ログイン</a>
+        <a class="link" href="/users/sign_up">新規登録</a>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+  <div class="middle row">
+
+    <div class="search col-md-3 text-center font-weight-bold">
+      <br>
+      <h3>■大学院を検索</h3>
+      <br>
+      <%= form_tag(controller:"logs",action:"index") do %>
+
+      ■都道府県名を選択：
+      <br>
+      <select name="area" id="area0">
+        <option data-subgroup="" value="">都道府県名を選択</option>
+        <%= @prefectures.each do |p| %>
+          <option data-subgroup=<%=p.subgroup%> value=<%=p.name%>><%=p.name%></option>
+        <% end %>
+      </select>
+
+      <br>
+      ■大学院名を選択：
+      <br>
+      <select name="log" id="area1">
+        <option data-group="" value="">大学院を選択</option>
+        <option data-group="chiba" data-subgroup="chiba" value="千葉大学大学院">千葉大学大学院</option>
+        <option data-group="tokyoto" data-subgroup="tokyo" value="東京大学大学院">東京大学大学院</option>
+        <option data-group="ibaraki" data-subgroup="tukuba" value="筑波大学大学院">筑波大学大学院</option>
+
+      </select>
+
+      <br>
+      <br>
+      <br>
+      <h3>■並び順を検索</h3>
+      <br>
+      <%= select_tag 'change',options_for_select([["並び順を選択",""],["いいね順", "rank"], ["新しい順", "logs"]])%>
+      <br>
+      <br>
+      <%= submit_tag "Change", :prefecture => nil ,:school => nil,class: "btn btn-primary" %>
+    <% end %>
+
+  </div>
+  <div class="indexbox col-md-8 col-md-offset-5">
+    <br>
+
+    <h3>■投稿一覧</h3>
+
+    <% @logs.each do |t|  %>
+      <div class="logs">
+        <div class="title">
+          <br>
+          <%= display_data t.title%>
+
+        </div>
+        <br>
+        <div class="myinfo">
+        <%= t.user.username %>さん 所持TOEICスコア:
+        <%= display_data t.user.score%>
+        </div>
+        <div class="school">
+          <%= display_data t.job%>
+          <%= display_data t.school%>
+          <%= display_data t.department%>
+          <%= display_data t.major%>
+          <br>
+        </div>
+        <div class="contents">
+        <% if user_signed_in? %>
+
+          ■使用教材
+          <br>
+          <%= simple_format(display_data t.book)%>
+
+          <br>
+
+          ■アドバイス
+          <br>
+          <%= simple_format(display_data t.body)%>
+
+        <% else %>
+
+          ここからはログインが必要です。
+          <br>
+          .<br>
+          .<br>
+          .<br>
+
+        <% end %>
+        </div>
+        <br>
+        <div class="indexlike">
+        ■いいね:
+        <%= t.likes.count %>
+        <br>
+
+        <% if user_signed_in? %>
+          <% if current_user.already_liked?(t) %>
+            <% like = Like.find_by(log_id: t.id, user_id: current_user.id) %>
+              <%= button_to 'いいねを取り消す', log_like_path(t.id,like.id), method: :delete,class:'btn btn-warning' %>
+
+            <% else %>
+              <%= form_for [t, @like] do |f| %>
+              <%= f.hidden_field :user_id, :value => current_user.id %>
+              <%= f.hidden_field :log_id, :value => t.id %>
+              <%= f.submit 'いいね！',class:'btn btn-warning' %>
+            <% end %>
+          <% end %>
+        <% end %>
+        </div>
+        </div>
+      <% end %>
+
+      <br>
+
+
+  </div>
+</div>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="“text/javascript”" src="“../javascripts/js/new.js”"></script>
+<script>
+  //地域セレクトボックスイベント設定
+  setHierarchySelectEvent('#area0', '#area1');
+  setHierarchySelectEvent('#area1', '#area2');
+  setHierarchySelectEvent('#area2', '#area3');
+  //セレクトボックスの初期値
+  $('#area0').val('0').change();
+  $('#area1').val('1').change();
+  $('#area2').val('2').change();
+  $('#area3').val('2').change();
+
+  /**
+ * 階層のあるプルダウンのイベントを設定します.
+ * 親のselectタグには属性data-subgroupが設定されている必要があります。
+ * 子のselectタグには属性data-groupが設定されている必要があります。
+ * @param parentSelect 親となるselectタグのセレクタ
+ * @param childSelect 子となるselectタグのセレクタ
+ */
+
+  function setHierarchySelectEvent(parentSelect, childSelect) {
+    var initCategorySmallHtml = $(childSelect).html();
+    $(parentSelect).change(function () {
+      if (1 < $(this).find('option:selected').length) {
+        $(childSelect).find("option").each(function (index, element) {
+          $(element).remove();
+        });
+      } else {
+        var subgroup = $(this).find('option:selected').attr('data-subgroup');
+        $(childSelect).html(initCategorySmallHtml);
+        $(childSelect).find("option").each(function (index, element) {
+          var group = $(element).attr('data-group');
+          if (group) {
+            if (subgroup == group) {
+              //$(element).css('display', 'block');//IEではoptionタグに対してdisplayは効かないため
+            } else {
+              //$(element).css('display', 'none');//IEではoptionタグに対してdisplayは効かないため
+              $(element).remove();
+            }
+          }
+        });
+      }
+      $(childSelect).val('').change(); //未選択時の値は''じゃない場合は書き換えてね
+    });
+  }
+</script>
+
+<script>
+  $(function () {
+    // #で始まるアンカーをクリックした場合に処理
+    $('a[href^=#]').click(function () {
+      // スクロールの速度
+      var speed = 400; // ミリ秒
+      // アンカーの値取得
+      var href = $(this).attr("href");
+      // 移動先を取得
+      var target = $(
+        href == "#" || href == ""
+          ? 'html'
+          : href
+      );
+      // 移動先を数値で取得
+      var position = target.offset().top;
+      // スムーススクロール
+      $('body,html').animate({
+        scrollTop: position
+      }, speed, 'swing');
+      return false;
+    });
+  });
+</script>

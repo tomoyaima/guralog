@@ -1,0 +1,281 @@
+// Place all the styles related to the logs controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.search{
+
+
+ padding: 1em 1em 1em 1em;
+background-color: #eeeeff;   /* 背景色：淡い青色 */
+ width: 95% auto;
+
+
+}
+
+/* ▼プルダウンメニューそのものの装飾 */
+.select {
+   font-size: 1em;   /* 項目の文字サイズを1.2倍に */
+
+   padding: 5px auto;
+   width: 100%;
+ }
+
+.indexbox{
+
+  width: 80%;
+  padding: 1em 1em 1em 2em;
+  max-width: 500px;
+  margin: 3px;
+
+
+}
+.body{
+    background-image : url("../images/logtop.jpg");
+    height: 100%;
+    background-color:white;
+}
+
+.logmypage{
+  border: 3px double #0000cc;  /* 青色の二重線(3px) */
+  background-color: #eeeeff;   /* 背景色：淡い青色 */
+  margin: 1em 0px;             /* 外側の余白：上下に1文字分 */
+  padding: 1em;                /* 内側の余白：周囲に1文字分 */
+  width: 400px;            /* はみ出る場合は自動調整(スクロールバーを表示) */
+}
+
+
+
+
+
+
+.header_middle{
+
+
+    color: white;
+
+  }
+
+  .flex_test-box {
+
+      /* 余白指定 */
+    display: flex;              /* フレックスボックスにする */
+
+}
+.flex_test-item {
+
+   color:  white;               /* 文字色 */
+
+
+   font-size: 20px;            /* 文字サイズ指定 */
+   text-align:  center;        /* 文字中央揃え */
+
+}
+
+.flex_test-item:nth-child(1) {
+    font-size: 3.9vw;
+    background-color:  #2196F3; /* 背景色指定 */
+             /* 幅指定 */
+
+
+      width:25%;
+}
+
+.flex_test-item:nth-child(2) {
+background-color:  #2196F3; /* 背景色指定 */
+    width: 35%;
+    font-size: 3vw;
+}
+
+.flex_test-item:nth-child(3) {
+   background-color:  #2196F3; /* 背景色指定 */
+  text-align: center;
+
+  width: 40%;
+  font-size:2vw;
+
+
+}
+
+.flex_test-item:nth-child(4) {
+    background-color: #00BCD4;  /* 背景色指定 */
+}
+.guraduate_collage_log{
+  font-size: 30px;
+  padding: 2px;
+  margin:  2px;
+}
+
+.toukoupage{
+  text-align-last: center;
+}
+
+.toukou{
+  margin-bottom:  50px;
+  padding: 20px 60px;
+}
+
+.mypagebox{
+  margin: 10px auto;
+
+}
+
+
+.field{
+  margin: 10px auto;
+  padding: 10px auto;
+}
+
+
+.logs{
+  background-image: url("log10.png");
+background-size: cover;
+position: relative;
+margin-top: 3px;
+height: 464.39px;
+width:599.98px;
+
+}
+
+.title{
+  font-size: 25px;
+  position: absolute;
+  left: 30%;
+
+}
+
+.school{
+  position: absolute;
+  left: 20%;
+  top: 3%;
+}
+
+.contents{
+  left: 30px;
+  top: 70px;
+  position: relative;
+
+}
+
+.myinfo{
+  position: absolute;
+  left:20%;
+  top:16%;
+}
+.indexlike{
+
+  position: absolute;
+    bottom: 4%;
+    right: 9%;
+
+}
+/*タブ切り替え全体のスタイル*/
+.tabs {
+  margin-top: 50px;
+  padding-bottom: 40px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 80%;
+  margin: 0 auto;}
+
+/*タブのスタイル*/
+.tab_item {
+  width: calc(100%/3);
+  height: 50px;
+  border-bottom: 3px solid #5ab4bd;
+  background-color: #d9d9d9;
+  line-height: 50px;
+  font-size: 16px;
+  text-align: center;
+  color: #565656;
+  display: block;
+  float: left;
+  text-align: center;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+.tab_item:hover {
+  opacity: 0.75;
+}
+
+/*ラジオボタンを全て消す*/
+input[name="tab_item"] {
+  display: none;
+}
+
+/*タブ切り替えの中身のスタイル*/
+.tab_content {
+  display: none;
+  padding: 40px 40px 0;
+  clear: both;
+  overflow: hidden;
+}
+
+
+/*選択されているタブのコンテンツのみを表示*/
+#all:checked ~ #all_content,
+#programming:checked ~ #programming_content,
+#design:checked ~ #design_content {
+  display: block;
+}
+
+/*選択されているタブのスタイルを変える*/
+.tabs input:checked + .tab_item {
+  background-color: #5ab4bd;
+  color: #fff;
+}
+
+
+
+.image{
+  background-image: url('log11.png');
+  background-attachment: fixed;
+  background-size:cover;
+  /*background-size: contain;*/
+  width: 100%;
+  max-height: 100%;
+  height: auto;
+
+  height:900px;
+  position: relative;
+
+
+}
+.imagebox{
+  font-size: 5vw;
+  top: 60%;
+  position: absolute;
+  position: fixed;
+  left:25%;
+  z-index: 0;
+
+}
+.image_header{
+  font-size: 2vw;
+  position: absolute;
+  position: fixed;
+  left:80%;
+  top:9%;
+
+}
+
+.header{
+  position: absolute;
+
+  width: 100%;
+}
+
+.middle{
+  position: relative;
+  z-index: 1000;
+  background: white;
+}
+#middle1{
+  z-index: 0;
+}
+.header1{
+  z-index: 100;
+
+}
+.session{
+  margin-top: 1.3vw;
+  padding-left: 12vw;
+}

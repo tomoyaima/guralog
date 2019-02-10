@@ -1,0 +1,258 @@
+<head>
+  <title>文書のタイトル</title>
+
+  <style type="text/css">
+    a.link:link {
+      color: white;
+    }
+    a.link:visited {
+      color: white;
+    }
+    a.link:hover {
+      color: #ff0000;
+    }
+    a.link:active {
+      color: white;
+    }
+  </style>
+
+</head>
+<div class="body">
+  <div class="flex_test-box">
+    <div class="flex_test-item">
+
+      院ログ
+      </div>
+      <div class="flex_test-item">
+        ~guraduate collage log~
+      </div>
+
+
+    <div class="flex_test-item">
+
+      <%= current_user.username %>さん
+      <a class="link" rel="nofollow" data-method="delete" href="/users/sign_out">ログアウト</a>
+<br>
+      <a class="link" href="/logs/index">投稿一覧へ</a>
+
+      <a class="link" href="/logs/new">新規投稿</a>
+
+
+
+    </div>
+
+  </div>
+
+  <h3>マイページ</h3>
+  <div class="tabs">
+    <input id="all" type="radio" name="tab_item" checked="checked">
+    <label class="tab_item" for="all">自分の投稿</label>
+    <input id="programming" type="radio" name="tab_item">
+    <label class="tab_item" for="programming">いいね</label>
+    <input id="design" type="radio" name="tab_item">
+    <label class="tab_item" for="design">プロフィール</label>
+    <div class="tab_content" id="all_content">
+      <div class="tab_content_description">
+        <div class="mypagebox">
+          <h3>自分の投稿一覧</h3>
+          <% @logs.each do |t|  %>
+
+
+              <br>
+              <% if t.title.blank?%>
+                記入なし
+              <% else %>
+                <%= t.title %>
+              <%end%>
+
+
+            <%= t.user.username %>さん 所持TOEICスコア:
+            <% if t.user.score.blank?%>
+              記入なし
+            <% else %>
+              <%= t.user.score %>
+            <%end%>
+            <br>
+
+
+
+              <% if t.job.blank?%>
+                記入なし
+              <% else %>
+                <%= t.job %>
+              <%end%>
+              <% if t.school.blank?%>
+                記入なし
+              <% else %>
+                <%= t.school%>
+              <% end %>
+
+              <% if t.department.blank?%>
+                記入なし
+              <% else %>
+                <%= t.department %>
+              <%end%>
+
+              <% if t.major.blank?%>
+                記入なし
+              <% else %>
+                <%= t.major %>
+              <%end%>
+              <br>
+              <br>
+
+            ■使用教材
+            <br>
+            <%= simple_format(display_data t.book)%>
+            <br>
+
+            ■アドバイス
+            <br>
+            <%= simple_format(display_data t.body)%>
+
+            <br>
+            いいね:
+            <%= t.likes.count %><br>
+
+            <% if user_signed_in? %>
+              <% if current_user.already_liked?(t) %>
+                <% like = Like.find_by(log_id: t.id, user_id: current_user.id) %>
+                  <%= button_to 'いいねを取り消す', log_like_path(t.id,like.id), method: :delete,class:'btn btn-warning' %>
+
+                <% else %>
+                  <%= form_for [t, @like] do |f| %>
+                  <%= f.hidden_field :user_id, :value => current_user.id %>
+                  <%= f.hidden_field :log_id, :value => t.id %>
+                  <%= f.submit 'いいね！',class:'btn btn-warning' %>
+                <% end %>
+              <% end %>
+            <% end %>
+
+
+            <%= link_to "編集する", edit_log_path(t.id) %>
+            <%= link_to "削除する", log_path(t.id), method: :delete %>
+            <br>
+          <% end %>
+
+       </div>
+
+      </div>
+    </div>
+
+
+  <div class="tab_content" id="programming_content">
+    <div class="tab_content_description">
+      <div class="mypagebox">
+        <h3>いいねしている投稿</h3>
+
+        <% current_user.liked_logs.each do |t|  %>
+
+          ■投稿主名
+          <br>
+          <%= t.user.username %>
+          <br>
+
+          ■大学院名:
+
+          <% if t.school.blank?%>
+            記入なし
+          <% else %>
+            <%= t.school%>
+          <% end %>
+
+          研究科:
+
+          <% if t.department.blank?%>
+            記入なし
+          <% else %>
+            <%= t.department %>
+          <%end%>
+
+          専攻:
+
+          <% if t.major.blank?%>
+            記入なし
+          <% else %>
+            <%= t.major %>
+          <%end%>
+
+          <br>
+          ■タイトル
+          <br>
+          <% if t.title.blank?%>
+            記入なし
+          <% else %>
+            <%= t.title %>
+          <%end%>
+          <br>
+
+          ■使用教材
+          <br>
+          <% if t.book.blank?%>
+            記入なし
+          <% else %>
+            <%= t.book %>
+          <%end%>
+          <br>
+          ■TOEICスコア
+          <br>
+          <% if t.score.blank?%>
+            記入なし
+          <% else %>
+            <%= t.score %>
+          <%end%>
+          <br>
+          ■就職情報
+          <br>
+          <% if t.job.blank?%>
+            記入なし
+          <% else %>
+            <%= t.job %>
+          <%end%>
+          <br>
+          ■アドバイス
+          <br>
+          <% if t.body.blank?%>
+            記入なし
+          <% else %>
+            <%= t.body %>
+          <% end %>
+          <br>
+          いいね:
+          <%= t.likes.count %><br>
+
+          <% if user_signed_in? %>
+            <% if current_user.already_liked?(t) %>
+              <% like = Like.find_by(log_id: t.id, user_id: current_user.id) %>
+                <%= button_to 'いいねを取り消す', log_like_path(t.id,like.id), method: :delete,class:'btn btn-warning' %>
+
+              <% else %>
+                <%= form_for [t, @like] do |f| %>
+                <%= f.hidden_field :user_id, :value => current_user.id %>
+                <%= f.hidden_field :log_id, :value => t.id %>
+                <%= f.submit 'いいね！',class:'btn btn-warning' %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <%end%>
+
+      </div>
+    </div>
+  </div>
+  <div class="tab_content" id="design_content">
+    <div class="tab_content_description"></div>
+    <h3>プロフィール</h3>
+    <h6>名前:
+    <%= current_user.username %>
+    <br>
+    TOEICスコア:
+    <%= current_user.score%>
+    <br>
+    メールアドレス:
+    <%= current_user.email%>
+      </h6>
+      <a href="/users/edit">プロフィール編集</a>
+
+  </div>
+</div>
+</div>

@@ -1,0 +1,154 @@
+<%= link_to "一覧に戻る", logs_index_path %>
+<%= form_for(@log, :url => { controller:'logs', action:'create'})do |f| %>
+<h1>投稿ページ</h1>
+<div class="field">
+  <%= f.label :タイトル %>
+  <br>
+  <%= f.text_field :title,size: 60 %>
+ </div>
+
+ <!-- ▼2段階プルダウンメニューの例（市を選択すると区が出てくる） -->
+ <div class="pulldownset">
+
+    <!-- ========================================== -->
+    <!-- (※1)▼1段階目(メイン)のプルダウンメニュー -->
+    ■大学院名を選択：
+    <br>
+    <select class="mainselect">
+       <option value="">大学院名を選択</option>
+       <option value="chiba">千葉大学大学院</option>
+       <option value="tokyo">東京大学大学院</option>
+       <option value="other">その他</option>
+    </select>
+  <br>
+    ■研究科を選択：
+    <br>
+    <select id="chiba" class="subbox">
+       <option value="">千葉大学大学院の研究科を選択</option>
+       <option value="cyuu">融合理工学府</option>
+       <option value="ckyou">教育学研究科</option>
+       <option value="ckan">看護学研究科</option>
+       <option value="cjin">人文公共学府</option>
+       <option value="ciyaku">医学薬学府</option>
+       <option value="cgaku">東京学芸大学大学院連合学校教育学研究科</option>
+       <option value="csenhou">専門法務研究科</option>
+       <option value="chou">園芸学研究科</option>
+       <option value="cosaka">大阪大学大学院連合小児発達学研究科</option>
+
+    </select>
+    <br>
+
+    <select id="tokyo" class="subbox">
+       <option value="">東京大学大学院の研究科を選択</option>
+       <option value="tokyojin">人文社会系研究科</option>
+       <option value="tokyokyou">教育学研究科</option>
+       <option value="tokyohou">法学政治学研究科 </option>
+       <option value="tokyokei">経済学研究科</option>
+       <option value="tokyousou">総合文化研究科</option>
+       <option value="tokyorigaku">理学系研究科</option>
+       <option value="tokyoukougaku">工学系研究科</option>
+       <option value="tokyonougaku">農学生命科学研究科</option>
+       <option value="tokyouigaku">医学系研究科</option>
+       <option value="tokyouyaku">薬学系研究科</option>
+       <option value="tokyosuuri">数理科学研究科</option>
+       <option value="tokyosinroyuiki">新領域創成科学研究科</option>
+       <option value="tokyojohori">情報理工学系研究科</option>
+       <option value="tokyoujoho">情報学環・学際情報学府</option>
+       <option value="tokyokoukyo">公共政策学教育部</option>
+
+    </select>
+     <br>
+    ■専攻名を選択：
+      <br>
+       <select id="cyuu" class="subsubbox">
+       <option value="">融合理工学府の専攻名を選択</option>
+       <option value="cyuusujou">数学情報科学専攻</option>
+       <option value="cyuutikyu">地球環境科学専攻</option>
+       <option value="cyuusenri">先進理化学専攻</option>
+       <option value="cyuusosei">創成工学専攻</option>
+       <option value="cyuukikan">基幹工学専攻</option>
+    </select>
+    <br>
+    <span id="other" class="subbox">
+       自由入力：<input type="text" value="" size="40">
+    </span>
+    <script type="text/javascript">
+    // ▼HTMLの読み込み直後に実行：
+    document.addEventListener('DOMContentLoaded', function() {
+
+       // ▼サブBOXを全て非表示にする
+       var allSubBoxes = document.getElementsByClassName("subbox");
+       for( var i=0 ; i<allSubBoxes.length ; i++) {
+          allSubBoxes[i].style.display = 'none';
+       }
+       var allSubsubBoxes = document.getElementsByClassName("subsubbox");
+       for( var j=0 ; j<allSubsubBoxes.length ; j++) {
+          allSubsubBoxes[j].style.display = 'none';
+       }
+
+       // ▼全てのプルダウンボックスごとに処理
+       var mainBoxes = document.getElementsByClassName('pulldownset');
+       for( var i=0 ; i<mainBoxes.length ; i++) {
+
+          var mainSelect = mainBoxes[i].getElementsByClassName("mainselect");   // メインのプルダウンメニュー（※後でvalue属性値を参照するので、select要素である必要があります。）
+          mainSelect[0].onchange = function () {
+             // ▼同じ親要素に含まれている全サブBOXを消す
+             var subBox = this.parentNode.getElementsByClassName("subbox");   // 同じ親要素に含まれる.subbox（※select要素に限らず、どんな要素でも構いません。）
+             for( var j=0 ; j<subBox.length ; j++) {
+                subBox[j].style.display = 'none';
+             }
+             // ▼指定されたサブBOXだけを表示する
+             if( this.value ) {
+                var targetSub = document.getElementById( this.value );   // 「メインのプルダウンメニューで選択されている項目のvalue属性値」と同じ文字列をid属性値に持つ要素を得る
+                targetSub.style.display = 'inline';
+             }
+
+             var subsubBox = this.parentNode.getElementsByClassName("subsubbox");   // 同じ親要素に含まれる.subbox（※select要素に限らず、どんな要素でも構いません。）
+             for( var k=0 ; k<subsubBox.length ; k++) {
+                subsubBox[k].style.display = 'none';
+             }
+             if( this.value ) {
+                var targetSubsub = document.getElementById( this.value );   // 「メインのプルダウンメニューで選択されている項目のvalue属性値」と同じ文字列をid属性値に持つ要素を得る
+                targetSubsub.style.display = 'inline';
+             }
+          }
+
+       }
+
+    });
+    </script>
+
+<br>
+    ■<%= f.label :学科 %>
+    <br>
+    <%= f.text_field :labnaiyou,size: 60 %>
+ </div>
+ <div class="field">
+   <%= f.label :使用教材%>
+   <br>
+   <%= f.text_area :kyouzai,size: 80 %>
+ </div>
+
+ <div class="field">
+   <%= f.label :TOEICスコア %>
+   <br>
+   <%= f.text_field :score,size: 60 %>
+  </div>
+
+   <div class="field">
+     <%= f.label :就職情報 %>
+     <br>
+     <%= f.text_field :syusyoku,size: 60 %>
+    </div>
+
+    <div class="field">
+      <%= f.label :アドバイス %>
+      <br>
+      <%= f.text_area :body,size: 60 %>
+     </div>
+
+ <div class="action">
+   <%= f.submit %>
+ </div>
+
+<% end %>
