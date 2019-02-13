@@ -1,42 +1,62 @@
-
 <div class="body">
-<div class="header11">
-  <div id="ham-menu">
-    <ul>
+  <div class="header11">
+    <div class="flex_test-box">
+      <div class="flex_test-item">
 
-      <li>
-        <h2><%= current_user.username %>さん</h2>
-      </li>
-      <li>
-        <h4>
-          <a href="/logs/index">投稿一覧</a>
-        </h4>
-      </li>
-      <li>
-        <h4>
-          <a href="/logs/new">新規投稿</a>
-        </h4>
-      </li>
-      <li>
-        <h4>
-          <a class="link" rel="nofollow" data-method="delete" href="/users/sign_out">ログアウト</a>
-        </h4>
-      </li>
-      <li>
-        <h4>
-          <a href="/">About</a>
-        </h4>
-      </li>
-      <li>
-        <h4>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSf-tNE0vLzNbkunEAx_vSEnBd4HO9AvEsHIEO1otC8OOmu8vQ/viewform?usp=sf_link">お問い合わせ</a>
-        </h4>
-      </li>
-    </ul>
+        院ログ
+      </div>
+    </div>
+
+    <div class="cp_cont">
+      <div class="cp_offcm01">
+        <input type="checkbox" id="cp_toggle01">
+        <label for="cp_toggle01">
+          <span></span></label>
+        <div class="cp_menu">
+          <ul>
+<li>
+            <h2>
+              メニュー
+            </h2>
+
+            <h4><%= current_user.username %>さん</h4>
+</li>
+            <li>
+              <h4>
+                <a href="/logs/index">投稿一覧へ</a>
+              </h4>
+            </li>
+            <li>
+              <h4>
+                <a href="/logs/new">新規投稿</a>
+              </h4>
+            </li>
+            <li>
+              <h4>
+                <a class="link" rel="nofollow" data-method="delete" href="/users/sign_out">ログアウト</a>
+              </h4>
+            </li>
+            <li>
+              <h4>
+                <a href="/">About</a>
+              </h4>
+            </li>
+            <li>
+              <h4>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSf-tNE0vLzNbkunEAx_vSEnBd4HO9AvEsHIEO1otC8OOmu8vQ/viewform?usp=sf_link">お問い合わせ</a>
+              </h4>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+      <div class="cp_contents">
+        <h1>contents</h1>
+      </div>
+    </div>
+    <div id="menu-background"></div>
 
   </div>
-  <div id="menu-background"></div>
-</div>
 
   <h3>マイページ</h3>
   <div class="tabs">

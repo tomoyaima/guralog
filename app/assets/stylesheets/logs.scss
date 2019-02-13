@@ -12,6 +12,101 @@ background-color: #2196F3;
 
 
 }
+*, *:before, *:after {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+ol, ul {
+	list-style: none;
+}
+a {
+	text-decoration: none;
+	color: inherit;
+}
+.cp_cont {
+	height: 65vh;
+}
+.cp_offcm01 {
+	position: absolute;
+	top: -1vw;
+	right: 4vw;
+	display: inline-block;
+}
+/* menu */
+.cp_offcm01 .cp_menu {
+  color: white;
+	position: fixed;
+	top: 0;
+	right: -100vw;
+	width: 250px;
+	height: 100%;
+	cursor: pointer;
+	-webkit-transition: 0.53s transform;
+	        transition: 0.53s transform;
+	-webkit-transition-timing-function: cubic-bezier(.38,.52,.23,.99);
+	        transition-timing-function: cubic-bezier(.38,.52,.23,.99);
+	background-color: #607D8B;
+	opacity: 0.8;
+      z-index: 1;
+}
+.cp_offcm01 .cp_menu ul {
+	margin: 0;
+	padding: 0;
+}
+.cp_offcm01 .cp_menu li {
+	list-style: none;
+}
+.cp_offcm01 .cp_menu li a {
+	display: block;
+	padding: 20px;
+	text-decoration: none;
+	color: #ffffff;
+	border-bottom: 1px solid #ffffff;
+}
+
+.cp_offcm01 #cp_toggle01 {
+	position: absolute;
+	display: none;
+	opacity: 0;
+}
+.cp_offcm01 #cp_toggle01:checked ~ .cp_menu {
+	-webkit-transform: translateX(-100vw);
+	        transform: translateX(-100vw);
+}
+/* menu toggle */
+.cp_offcm01 #cp_toggle01 ~ label {
+	display: block;
+	padding: 0.5em;
+	cursor: pointer;
+	-webkit-transition: 0.5s transform;
+	        transition: 0.5s transform;
+	-webkit-transition-timing-function: cubic-bezier(.61,-0.38,.37,1.27);
+	        transition-timing-function: cubic-bezier(.61,-0.38,.37,1.27);
+	text-align: center;
+	color: #333333;
+}
+.cp_offcm01 #cp_toggle01:checked ~ label {
+	-webkit-transform: translateX(-250px);
+	        transform: translateX(-250px);
+}
+.cp_offcm01 #cp_toggle01 ~ label::before {
+  position: fixed;
+	font-family: 'FontAwesome';
+	content: "≡"; /*メニューアイコン*/
+	font-size: 5vw;
+  z-index: 10;
+}
+.cp_offcm01 #cp_toggle01:checked ~ label::before {
+  position: fixed;
+	content: "≡";
+    z-index: 10;
+}
+/* contents */
+.cp_contents {
+	color: #333333;
+	text-align: center;
+}
 /*メニュー部分*/
 #ham-menu {
     background-color: #fff; /*メニュー背景色*/
@@ -40,7 +135,7 @@ background-color: #2196F3;
     right: 100%;
     text-align: center;
     top: 0;
-    width: 50px;
+    width: 100px;
 }
 
 /*透過背景部分*/
@@ -69,7 +164,7 @@ background-color: #2196F3;
 }
 .search{
  padding: 1em 1em 1em 1em;
-background-color: #5ab4bd;   /* 背景色：淡い青色 */
+background-color: #52f5fd;;   /* 背景色：淡い青色 */
  width: 95% auto;
 }
 
