@@ -23,10 +23,10 @@
   <div class="flex_test-box">
     <div class="flex_test-item">
 
-      大学院ログ
+      院ログ
       </div>
       <div class="flex_test-item">
-        ~graduate collage log~
+
       </div>
 
 
@@ -63,6 +63,7 @@
       <option data-subgroup="" value="">都道府県名を選択</option>
       <%= @prefectures.each do |p| %>
         <option data-subgroup=<%=p.subgroup%> value=<%=p.name%>><%=p.name%></option>
+
       <% end %>
     </select>
     <br>
@@ -70,9 +71,10 @@
     <br>
     <select name="log[school]" id="area1">
       <option data-group="" value="">大学院名を選択</option>
-      <option data-group="chiba" data-subgroup="chiba" value="千葉大学大学院">千葉大学大学院</option>
       <option data-group="tokyoto"data-subgroup="tokyo"  value="東京大学大学院">東京大学大学院</option>
+      <option data-group="chiba" data-subgroup="chiba" value="千葉大学大学院">千葉大学大学院</option>
       <option data-group="ibaraki" data-subgroup="tukuba" value="筑波大学大学院">筑波大学大学院</option>
+      <option data-group="tokyoto" data-subgroup="toko" value="東京工業大学大学院">東京工業大学大学院</option>
 
     </select>
 
@@ -108,8 +110,18 @@
       <option data-group="tokyo" data-subgroup="tokyojou" value="情報理工学系研究科">情報理工学系研究科</option>
       <option data-group="tokyo" data-subgroup="tokyojokan" value="情報学環・学際情報学府">情報学環・学際情報学府</option>
       <option data-group="tokyo" data-subgroup="tokyokoukyou" alue="公共政策学教育部">公共政策学教育部</option>
+      <option data-group="toko"data-subgroup="tokorigaku"  value="理学院">理学院</option>
+      <option data-group="toko"data-subgroup="tokyokogaku"  value="工学院">工学院</option>
+      <option data-group="toko"data-subgroup="tokobusitu"  value="物質理工学院">物質理工学院</option>
+      <option data-group="toko"data-subgroup="tokojohogaku"  value="情報理工学院">情報理工学院</option>
+      <option data-group="toko"data-subgroup="tokoseimeigaku"  value="生命理工学院">生命理工学院</option>
+      <option data-group="toko"data-subgroup="tokokansyagaku"  value="環境・社会理工学院">環境・社会理工学院</option>
 
-      <option data-group="tokyo" data-subgroup="tokyokoukyou" alue="公共政策学教育部">公共政策学教育部</option>
+      <option data-group="tukuba"data-subgroup="tukubajin"  value="人文社会科学研究科">人文社会科学研究科</option>
+      <option data-group="tukuba"data-subgroup="tukubakyouiku"  value="教育学研究科">教育学研究科</option>
+      <option data-group="tukuba"data-subgroup="tukubarikou"  value="理工学研究科">理工学研究科</option>
+      <option data-group="tukuba"data-subgroup="tukubanou"  value="農学研究科">農学研究科</option>
+
 
     </select>
     <br>
@@ -243,6 +255,73 @@
       <option data-group="tokyokoukyou" value="公共政策学専攻">公共政策学専攻</option>
       <option data-group="tokyokoukyou" value="国際公共政策学専攻">国際公共政策学専攻</option>
 
+      <option data-group="tokorigaku" value="数学コース">数学コース</option>
+      <option data-group="tokorigaku" value="物理学コース">物理学コース</option>
+      <option data-group="tokorigaku" value="化学コース">化学コース</option>
+      <option data-group="tokorigaku" value="エネルギーコース">エネルギーコース</option>
+      <option data-group="tokorigaku" value="地球惑星科学コース">地球惑星科学コース</option>
+      <option data-group="tokokogaku" value="機械コース">機械コース</option>
+      <option data-group="tokokogaku" value="エネルギーコース">エネルギーコース</option>
+      <option data-group="tokokogaku" value="エンジニアリングデザインコース">エンジニアリングデザインコース</option>
+      <option data-group="tokokogaku" value="ライフエンジニアリングコース">ライフエンジニアリングコース</option>
+      <option data-group="tokokogaku" value="原子核工学コース">原子核工学コース</option>
+      <option data-group="tokokogaku" value="システム制御コース">システム制御コース</option>
+      <option data-group="tokokogaku" value="電気電子コース">電気電子コース</option>
+      <option data-group="tokokogaku" value="情報通信コース">情報通信コース</option>
+      <option data-group="tokokogaku" value="経営工学コース">経営工学コース</option>
+      <option data-group="tokobusitu" value="材料コース">材料コース</option>
+      <option data-group="tokobusitu" value="エネルギーコース">エネルギーコース</option>
+      <option data-group="tokobusitu" value="ライフエンジニアリングコース">ライフエンジニアリングコース</option>
+      <option data-group="tokobusitu" value="原子核工学コース">原子核工学コース</option>
+      <option data-group="tokobusitu" value="応用化学コース">応用化学コース</option>
+      <option data-group="tokojohogaku" value="数理・計算科学コース">数理・計算科学コース</option>
+      <option data-group="tokojohogaku" value="知能情報コース">知能情報コース</option>
+      <option data-group="tokojohogaku" value="情報工学コース">情報工学コース</option>
+      <option data-group="tokoseimeigaku" value="生命理工学コース">生命理工学コース</option>
+      <option data-group="tokoseimeigaku" value="ライフエンジニアリングコース">ライフエンジニアリングコース</option>
+      <option data-group="tokokansyagaku" value="建築学コース">建築学コース</option>
+      <option data-group="tokokansyagaku" value="エネルギーコース">エネルギーコース</option>
+      <option data-group="tokokansyagaku" value="エンジニアリングデザインコース">エンジニアリングデザインコース</option>
+      <option data-group="tokokansyagaku" value="ライフエンジニアリングコース">ライフエンジニアリングコース</option>
+      <option data-group="tokokansyagaku" value="原子核工学コース">原子核工学コース</option>
+      <option data-group="tokokansyagaku" value="土木工学コース">土木工学コース</option>
+      <option data-group="tokokansyagaku" value="都市・環境学コース">都市・環境学コース</option>
+      <option data-group="tokokansyagaku" value="地球環境共創コース">地球環境共創コース</option>
+      <option data-group="tokokansyagaku" value="社会・人間科学コース">社会・人間科学コース</option>
+      <option data-group="tokokansyagaku" value="イノベーション科学コース">イノベーション科学コース</option>
+      <option data-group="tokokansyagaku" value="技術経営専門職学位課程">技術経営専門職学位課程</option>
+
+      <option data-group="tukubajin" value="文化科学専攻">文化科学専攻</option>
+      <option data-group="tukubajin" value="社会科学専攻">社会科学専攻</option>
+      <option data-group="tukubakyouiku" value="障害児教育専攻">障害児教育専攻</option>
+      <option data-group="tukubakyouiku" value="教科教育専攻">教科教育専攻</option>
+      <option data-group="tukubakyouiku" value="養護教育専攻">養護教育専攻</option>
+      <option data-group="tukubakyouiku" value="学校臨床心理学専攻">学校臨床心理学専攻</option>
+      <option data-group="tukubakyouiku" value="教育実践高度化専攻">教育実践高度化専攻</option>
+
+      <option data-group="tukubarikou" value="数学・情報数理コース">数学・情報数理コース</option>
+      <option data-group="tukubarikou" value="宇宙物理学コース">宇宙物理学コース</option>
+      <option data-group="tukubarikou" value="化学コース">化学コース</option>
+      <option data-group="tukubarikou" value="生物学コース">生物学コース</option>
+      <option data-group="tukubarikou" value="地球環境化学コース">地球環境化学コース</option>
+      <option data-group="tukubarikou" value="機械システム工学専攻">機械システム工学専攻</option>
+      <option data-group="tukubarikou" value="電気電子システム工学専攻">電気電子システム工学専攻</option>
+      <option data-group="tukubarikou" value="情報工学専攻">情報工学専攻</option>
+      <option data-group="tukubarikou" value="都市システム工学専攻">都市システム工学専攻</option>
+      <option data-group="tukubarikou" value="量子線科学専攻">量子線科学専攻</option>
+      <option data-group="tukubarikou" value="複雑系システム科学専攻">複雑系システム科学専攻</option>
+      <option data-group="tukubarikou" value="社会インフラシステム科学専攻">社会インフラシステム科学専攻</option>
+
+      <option data-group="tukubanou" value="アジア展開農学コース">アジア展開農学コース</option>
+      <option data-group="tukubanou" value="実践農食科学コース">実践農食科学コース</option>
+      <option data-group="tukubanou" value="応用植物科学コース">応用植物科学コース</option>
+      <option data-group="tukubanou" value="地域共生コース">地域共生コース</option>
+
+
+
+
+
+
 
        </select>
 
@@ -251,7 +330,7 @@
   <div class="field">
     <%= f.label :■合否 %>
     <br>
-    <%= f.select :job,[["合格","合格"],["不合格","不合格"]] %>
+    <%= f.select :job,[["合格!","合格!"],["不合格","不合格"]] %>
 
   </div>
 

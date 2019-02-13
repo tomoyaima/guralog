@@ -1,14 +1,76 @@
 // Place all the styles related to the logs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.header11{
+
+background-color: #2196F3;
+
+    width: 100%;
+
+  height: 6.2vw;
+
+
+}
+/*メニュー部分*/
+#ham-menu {
+    background-color: #fff; /*メニュー背景色*/
+    box-sizing: border-box;
+    height: 100%;
+    padding: 10px 40px; /*メニュー内部上下左右余白*/
+    position: fixed;
+    right: -300px; /*メニュー横幅①と合わせる*/
+    top: 0;
+    transition: transform 0.3s linear 0s; /*0.3s は変化するのにかかる時間*/
+    width: 300px; /*メニュー横幅①*/
+    z-index: 1000;
+}
+
+/*メニューアイコン部分は疑似要素で*/
+#ham-menu::before {
+    background-color: #fff; /*ボタン部分背景色*/
+    border-radius: 0 0 0 10px; /*左下角丸*/
+    color: #333; /*アイコン（フォント）色*/
+    content: "≡"; /*メニューアイコン*/
+    display: block;
+    font-size: 50px; /*アイコン（フォント）サイズ*/
+    height: 50px;
+    line-height: 50px; /*縦位置中央化*/
+    position: absolute;
+    right: 100%;
+    text-align: center;
+    top: 0;
+    width: 50px;
+}
+
+/*透過背景部分*/
+#menu-background {
+    background-color: #333; /*黒背景部分背景色*/
+    display: block;
+    height: 100%;
+    opacity: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    transition: all 0.3s linear 0s; /*0.3s は変化するのにかかる時間*/
+    width: 100%;
+    z-index: -1;
+}
+
+/*hover 時の処理*/
+#ham-menu:hover {
+    transform: translate(-300px); /*メニュー横幅①と合わせる*/
+
+}
+
+#ham-menu:hover + #menu-background {
+    opacity: 0.5; /*黒背景部分透過度*/
+    z-index: 999;
+}
 .search{
-
-
  padding: 1em 1em 1em 1em;
-background-color: #eeeeff;   /* 背景色：淡い青色 */
+background-color: #5ab4bd;   /* 背景色：淡い青色 */
  width: 95% auto;
-
-
 }
 
 /* ▼プルダウンメニューそのものの装飾 */
@@ -32,6 +94,7 @@ background-color: #eeeeff;   /* 背景色：淡い青色 */
     background-image : url("../images/logtop.jpg");
     height: 100%;
     background-color:white;
+    font-family: "YuMincho", "游明朝",serif;
 }
 
 .logmypage{
@@ -42,7 +105,13 @@ background-color: #eeeeff;   /* 背景色：淡い青色 */
   width: 400px;            /* はみ出る場合は自動調整(スクロールバーを表示) */
 }
 
+.exitlog{
 
+  font-size: 24px;
+  position: absolute;
+  top: 92%;
+  left: 60%;
+}
 
 
 
@@ -128,10 +197,13 @@ background-color:  #2196F3; /* 背景色指定 */
 .logs{
   background-image: url("log10.png");
 background-size: cover;
+position: absolute;
 position: relative;
-margin-top: 3px;
-height: 464.39px;
-width:599.98px;
+margin-left: 50px;
+
+height: 604.39px;
+        width: 616.98px;
+    font-size: 1.1rem;
 
 }
 
@@ -144,29 +216,58 @@ width:599.98px;
 
 .school{
   position: absolute;
-  left: 20%;
-  top: 3%;
+  left: 3%;
+  top: 25%;
 }
-
 .contents{
-  left: 30px;
-  top: 70px;
+  left: 4%;
+  top:  33%;
   position: relative;
 
 }
+.contents1{
+
+  top: 25px;
+  position: absolute;
+
+}
+
+.contents2{
+
+    top: 300%;
+  position: absolute;
+
+}
+
+.contents12{
+
+    top: 600%;
+  position: absolute;
+
+}
+.crelike{
+    position: absolute;
+    bottom: 1%;
+    left:4%;
+
+}
+
+.indexlike{
+  position: absolute;
+  bottom: 11%;
+  left: 4%;
+
+}
+
+
+
 
 .myinfo{
   position: absolute;
-  left:20%;
-  top:16%;
+  left: 3%;
+  top: 20%;
 }
-.indexlike{
 
-  position: absolute;
-    bottom: 4%;
-    right: 9%;
-
-}
 /*タブ切り替え全体のスタイル*/
 .tabs {
   margin-top: 50px;
@@ -227,27 +328,60 @@ input[name="tab_item"] {
 
 .image{
   background-image: url('log11.png');
-  background-attachment: fixed;
+
   background-size:cover;
   /*background-size: contain;*/
   width: 100%;
   max-height: 100%;
   height: auto;
 
-  height:900px;
+  height:1000px;
   position: relative;
 
 
 }
 .imagebox{
   font-size: 5vw;
-  top: 60%;
+  top: 45%;
   position: absolute;
-  position: fixed;
-  left:25%;
+
+  left:27%;
   z-index: 0;
+transition: .4s;
+ overflow: hidden;
 
 }
+
+.imagebox:hover {
+
+
+  -webkit-transform: rotate(10deg);
+  transform: rotate(10deg);
+}
+
+
+
+// .btn-circle-fishy {
+//   display: inline-block;
+//
+//   line-height: 60px;/*heightと同じ値に*/
+//   text-decoration: none;
+//
+//   width: 64vw;
+//     height: 40vw;
+//   line-height: 120px;
+//
+//   text-align: center;
+//   vertical-align: middle;
+//   overflow: hidden;
+//   background-image: url('log13');
+//   transition: .4s;
+// }
+//
+// .btn-circle-fishy:hover {
+//   -webkit-transform: rotate(10deg);
+//   transform: rotate(10deg);
+// }
 .image_header{
   font-size: 2vw;
   position: absolute;
@@ -265,12 +399,10 @@ input[name="tab_item"] {
 
 .middle{
   position: relative;
-  z-index: 1000;
+
   background: white;
 }
-#middle1{
-  z-index: 0;
-}
+
 .header1{
   z-index: 100;
 

@@ -18,31 +18,29 @@
 
 </head>
 <div class = "body">
-<div class="flex_test-box">
+  <div class="header1">
 
-  <div class="flex_test-item">
+  <div class="flex_test-box">
+    <div class="flex_test-item">
 
-    院ログ
-    <div class="guraduate_collage_log">
+      院ログ
+      </div>
+      <div class="flex_test-item">
 
-      ~guraduate collage log~
-    </div>
-
-  </div>
-
-  <div class="flex_test-item">
+      </div>
 
 
+    <div class="flex_test-item">
+      <div class="session">
       <%= current_user.username %>さん
 
-      <a class="link" href="/logs/index">一覧へ</a>
-      <br>
-      <a class="link" href="/logs/mypage">マイページ</a>
-      <a class="link" rel="nofollow" data-method="delete" href="/users/sign_out">ログアウト</a>
 
+      <a class="link" href="/logs/index">投稿一覧へ戻る</a>
+  </div>
+    </div>
+  </div>
   </div>
 
-</div>
 
 <%= form_for(@log, :url => { controller:'logs', action:'update'})do |f| %>
 
@@ -255,7 +253,7 @@
   <div class="field">
     <%= f.label :■合否 %>
     <br>
-    <%= f.select :job,[["合格","合格"],["不合格","不合格"]] %>
+    <%= f.select :job,[["合格!","合格!"],["不合格","不合格"]] %>
 
   </div>
 

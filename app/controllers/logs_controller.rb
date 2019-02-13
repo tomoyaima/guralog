@@ -4,11 +4,10 @@ class LogsController < ApplicationController
 
 
       @like = Like.new
-      @searchinfos = Searchinfo.new
-      @searchinfos = Searchinfo.all
+
       @prefectures = Prefecture.all
 if params[:change] == "rank"
-
+@order = params[:change]
 
         #@like = Like.find(params[:id])
         if params[:log] == nil
@@ -23,9 +22,11 @@ if params[:change] == "rank"
           @logs = Like.group(:log_id).order('count(log_id) desc').pluck(:log_id)
           @logs = @logs.map{|n| Log.find(n)}
           @logs = Log.where("school LIKE ? ",'%' + params[:log] + '%')
-
+          @test = params[:log]
          end
+
 else
+     @order = params[:change]
      if params[:log] == nil
        @logs = Log.all.order("id DESC")
 
@@ -34,7 +35,7 @@ else
      else
        #部分検索
        @logs = Log.where("school LIKE ? ",'%' + params[:log] + '%')
-
+       @test = params[:log]
       end
   end
   end
