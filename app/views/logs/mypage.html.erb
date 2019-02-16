@@ -14,13 +14,13 @@
           <span></span></label>
         <div class="cp_menu">
           <ul>
-<li>
-            <h2>
-              メニュー
-            </h2>
+            <li>
+              <h2>
+                <a>メニュー</a>
+              </h2>
+            </li>
 
-            <h4><%= current_user.username %>さん</h4>
-</li>
+            <li>
             <li>
               <h4>
                 <a href="/logs/index">投稿一覧へ</a>
@@ -50,15 +50,18 @@
           </ul>
         </div>
       </div>
-      <div class="cp_contents">
-        <h1>contents</h1>
-      </div>
+
     </div>
     <div id="menu-background"></div>
 
   </div>
 
-  <h3>マイページ</h3>
+  <br>
+<div class="mypagefont">
+  <h2>マイページ</h2>
+   </div>
+   <br>
+
   <div class="tabs">
     <input id="all" type="radio" name="tab_item" checked="checked">
     <label class="tab_item" for="all">自分の投稿</label>
@@ -80,15 +83,19 @@
               </div>
               <br>
               <div class="myinfo">
-                <%= t.user.username %>さん 所持TOEICスコア:
-                <%= display_data t.user.score%>
-              </div>
-              <div class="school">
                 <%= display_data t.job%>
+                <br>
                 <%= display_data t.school%>
                 <br>
                 <%= display_data t.department%>
                 <%= display_data t.major%>
+                <br>
+              </div>
+              <div class="school">
+                <%= t.user.username %>さん 所持TOEICスコア:
+                <%= display_data t.user.score%>
+
+
                 <br>
               </div>
               <div class="contents">

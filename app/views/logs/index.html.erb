@@ -16,12 +16,11 @@
         <div class="cp_menu">
           <ul>
             <% if user_signed_in? %>
-
-              <h2>
-                メニュー
-              </h2>
-
-              <h4><%= current_user.username %>さん</h4>
+              <li>
+                <h2>
+                  <a>メニュー</a>
+                </h2>
+              </li>
 
               <li>
                 <h4>
@@ -83,17 +82,16 @@
       <div class="cp_contents">
         <h1>contents</h1>
       </div>
-      </div>
-      <div id="menu-background"></div>
+    </div>
+    <div id="menu-background"></div>
 
   </div>
 
-
-  <div class="middle row">
+  <div class="middle">
 
     <div class="search col-md-3 text-center font-weight-bold">
       <br>
-      <h3>■大学院を検索</h3>
+      <h3>大学院を検索</h3>
       <br>
       <%= form_tag(controller:"logs",action:"index") do %>
 
@@ -102,10 +100,10 @@
       <select name="area" id="area0">
         <% if @test=="千葉大学大学院"%>
           <option data-subgroup="chiba" value="chiba">千葉県</option>
-          <option data-subgroup="" value="">都道府県名を選択</option>
+          <option data-subgroup="" value="">全表示</option>
           <%elsif @test=="東京大学大学院"%>
             <option data-subgroup="tokyoto" value="tokyoto">東京都</option>
-            <option data-subgroup="" value="">都道府県名を選択</option>
+            <option data-subgroup="" value="">全表示</option>
           <% else %>
             <option data-subgroup="" value="">都道府県名を選択</option>
           <% end %>
@@ -122,6 +120,7 @@
 
         <% if @test=="千葉大学大学院"%>
           <option data-group="chiba" data-subgroup="chiba" value="千葉大学大学院">千葉大学大学院</option>
+
           <% elsif @test=="東京大学大学院"%>
             <option data-group="tokyoto" data-subgroup="tokyo" value="東京大学大学院">東京大学大学院</option>
             <% elsif @test=="筑波大学大学院"%>
@@ -141,7 +140,7 @@
             <br>
             <br>
             <br>
-            <h3>■並び順を検索</h3>
+            <h3>並び順を検索</h3>
             <br>
 
             <% if @order == "rank"%>
@@ -158,11 +157,12 @@
 
           </div>
 
-          <div class="indexbox col-md-7 col-md-offset-6">
+          <div class="indexbox col-md-9">
             <br>
-
-            <h3>■投稿一覧</h3>
-
+<div class="toukoufont">
+            <h3>投稿一覧</h3>
+</div>
+<div class="logsall">
             <% @logs.each do |t|  %>
               <div class="logs">
                 <div class="title">
@@ -172,15 +172,19 @@
                 </div>
                 <br>
                 <div class="myinfo">
-                  <%= t.user.username %>さん 所持TOEICスコア:
-                  <%= display_data t.user.score%>
-                </div>
-                <div class="school">
                   <%= display_data t.job%>
+                  <br>
                   <%= display_data t.school%>
                   <br>
                   <%= display_data t.department%>
                   <%= display_data t.major%>
+                  <br>
+                </div>
+                <div class="school">
+                  <%= t.user.username %>さん 所持TOEICスコア:
+                  <%= display_data t.user.score%>
+
+
                   <br>
                 </div>
                 <div class="contents">
@@ -234,7 +238,7 @@
             <% end %>
 
             <br>
-
+           </div>
           </div>
         </div>
       </div>
